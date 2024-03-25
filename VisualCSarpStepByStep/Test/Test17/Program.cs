@@ -25,6 +25,11 @@ struct MyWay
         
         // 密码从外部只能设置，不能读取
         // Console.WriteLine($"d is {origin.Q}");
+
+        OtherScreenPosition otherWays = new OtherScreenPosition(9, 8);
+        Console.WriteLine($"One value is {otherWays.CC}, and another value is {otherWays.DD}");
+
+        ScreenPositionPrevious value = new ScreenPositionPrevious(5, 3);
+        Console.WriteLine($"First result is {((IScreenPosition)value).CC}, second result is {((IScreenPosition)value).DD}");
     }
 }
- 

@@ -25,10 +25,10 @@ struct ScreenPosition
         return y;
     }
 
-    public ScreenPosition(int X, int Y)
+    public ScreenPosition(int x, int y)
     {
-        this._a = RangeCheckedX(X);
-        this._b = RangeCheckedY(Y);
+        this._a = RangeCheckedX(x);
+        this._b = RangeCheckedY(y);
         
         Console.WriteLine(F(10));
     }
@@ -72,4 +72,12 @@ struct ScreenPosition
     {
         return n >= 1 ? n * F(n - 1) : 1;
     }
+
+    public int CC
+    {
+        get => this._a;
+        set { }
+    }
+
+    public int DD { get; set; }
 }
