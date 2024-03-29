@@ -37,7 +37,7 @@
         private int side1Length = 10;
         private int side2Length = 10;
         private int side3Length = 10;
-        public string shapeName = "123";
+        public string shapeName = "";
 
         public int Side1Length
         {
