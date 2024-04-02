@@ -15,6 +15,27 @@
             Console.WriteLine($"In tri3, Side1Length is {tri3.Side1Length}, Side2Length is {tri3.Side2Length}, Side3Length is {tri3.Side3Length}");
             Console.WriteLine($"In tri4, Side1Length is {tri4.Side1Length}, Side2Length is {tri4.Side2Length}, Side3Length is {tri4.Side3Length}");
             Console.WriteLine($"In tri5, shape is {tri5.shapeName}, Side1Length is {tri5.Side1Length}, Side2Length is {tri5.Side2Length}, Side3Length is {tri5.Side3Length}");
+            
+            var grade1 = new Grade(1, "Math", 'A');
+            var grade2 = new Grade(1, "French", 'C');
+            var grade3 = grade1;
+            var grade4 = grade1 with { StudentID = 2 };
+            
+            Console.WriteLine(grade1);
+            Console.WriteLine(grade2);
+            Console.WriteLine(grade3);
+            Console.WriteLine($"{grade1 == grade3}");
+            Console.WriteLine($"{grade1 == grade2}");
+            Console.WriteLine($"{grade4}");
+
+            var (studentID, subjectName, grade) = grade1;
+            Console.WriteLine($"{studentID}, {subjectName}, {grade}");
+            
+            // var secondStudentID = grade2.StudentID;
+            // var secondSubject = grade2.Subject;
+            // var secondSubjectGrade = grade2.SubjectGrade;
+            //
+            // Console.WriteLine($"{secondStudentID}, {secondSubject}, {secondSubjectGrade}");
         }
     }
 }
