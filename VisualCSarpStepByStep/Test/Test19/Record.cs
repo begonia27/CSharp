@@ -6,6 +6,6 @@
     //     public string Subject { get; init; }
     //     public char SubjectGrade { get; init; }
     // }
-    
-    record Grade(int StudentID, string Subject, char SubjectGrade);
+
+    public record Grade(int StudentID, string Subject, char SubjectGrade);
 }
