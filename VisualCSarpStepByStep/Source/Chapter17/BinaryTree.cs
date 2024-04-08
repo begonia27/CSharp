@@ -1,10 +1,10 @@
 ﻿namespace Source.Chapter17;
 
-public class Tree<TItem> where TItem : IComparable<TItem>
+public partial class Tree<TItem> where TItem : IComparable<TItem>
 {
     public TItem NodeData { get; set; }
-    public Tree<TItem>? LeftTree { get; set; }
-    public Tree<TItem>? RightTree { get; set; }
+    public Tree<TItem> LeftTree { get; set; }
+    public Tree<TItem> RightTree { get; set; }
 
     public Tree(TItem nodeValue)
     {

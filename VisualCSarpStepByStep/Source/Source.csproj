@@ -6,4 +6,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Test\Chapter17\Chapter17.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Source">
+        <HintPath>obj\Debug\net8.0\Source.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

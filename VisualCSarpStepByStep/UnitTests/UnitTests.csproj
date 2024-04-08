@@ -24,4 +24,10 @@
       <ProjectReference Include="..\Source\Source.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Source">
+        <HintPath>..\Source\obj\Debug\net8.0\Source.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
