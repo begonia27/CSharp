@@ -16,8 +16,4 @@
       </Reference>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Chapter18\" />
-    </ItemGroup>
-
 </Project>

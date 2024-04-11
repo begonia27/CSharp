@@ -47,11 +47,11 @@ public class ListTests
     public void LinkedListTest()
     {
         int[] firstOrigin = [10, 8, 6, 4, 2];
-        LinkedList<int> firstNumber = new LinkedList<int>();
+        LinkedList<int> firstNumber = [];
         LinkedList<int> firstChange = new LinkedList<int>([2, 4, 6, 8 ,10]);
 
         int[] secondOrigin = [2, 4, 6, 8, 10];
-        LinkedList<int> secondNumber = new LinkedList<int>();
+        LinkedList<int> secondNumber = [];
         LinkedList<int> secondChange = new LinkedList<int>([2, 4, 6, 8, 10]);
         
         LinkedList<int> thirdNumber = new LinkedList<int>([1, 3, 5]);
@@ -139,18 +139,18 @@ public class ListTests
     [TestMethod]
     public void PriorityQueueTest()
     {
-        List<string> finallyMessages = new()
-        {
+        List<string> finallyMessages =
+        [
             "Twas 1",
             "Brillig 1",
             "Slithy 2",
             "and 2",
             "the 3",
             "Toves 3"
-        };
+        ];
         
         PriorityQueue<string, int> message = new PriorityQueue<string, int>();
-        List<string> changeMessage = new();
+        List<string> changeMessage = [];
         
         message.Enqueue("Twas", 1);
         message.Enqueue("Brillig", 1);
@@ -187,7 +187,7 @@ public class ListTests
     public void StackPopTest()
     {
         int number = 0;
-        List<int> finallyNumbers = new List<int>();
+        List<int> finallyNumbers = [];
         
         // 入栈后的访问顺序是由后到前，索引为 0 的元素是栈中的值 6
         Stack<int> original = new Stack<int>([9, 7, 2, 6]);
@@ -218,29 +218,29 @@ public class ListTests
         List<string> membersName = new ();
         List<int> membersAge = new ();
         
-        List<string> membersInfoExpected = new ()
-        {
+        List<string> membersInfoExpected =
+        [
             "John 57",
             "Diana 57",
             "James 30",
             "Francesca 27"
-        };
+        ];
         
-        List<string> membersNameExpected = new ()
-        {
+        List<string> membersNameExpected =
+        [
             "John",
             "Diana",
             "James",
             "Francesca"
-        };
+        ];
         
-        List<int> membersAgeExpected = new ()
-        {
+        List<int> membersAgeExpected =
+        [
             57,
             57,
             30,
             27
-        };
+        ];
 
         foreach (KeyValuePair<string, int> element in info)
         {
@@ -258,20 +258,20 @@ public class ListTests
     public void SortedListTest()
     {
         SortedList<string, int> familyInfo = new SortedList<string, int>();
-        List<string> infoFinally = new ();
+        List<string> infoFinally = [];
         
         familyInfo.Add("John", 52);
         familyInfo.Add("James", 12);
         familyInfo.Add("Alice", 52);
         familyInfo.Add("Bob", 2);
 
-        List<string> sortedExpected = new()
-        {
+        List<string> sortedExpected =
+        [
             "Alice 52",
             "Bob 2",
             "James 12",
             "John 52"
-        };
+        ];
         
         foreach (KeyValuePair<string, int> elementInfo in familyInfo)
         {

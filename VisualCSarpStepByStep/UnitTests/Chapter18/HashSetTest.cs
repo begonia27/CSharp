@@ -143,4 +143,15 @@ public class HashSetTests
         
         CollectionAssert.AreEqual(onlyExpected, sorted);
     }
+    
+    // use "class" substitute "collection":
+    // class T
+    // {
+    //     private string First;
+    //     private int Second;
+    // }
+    
+    // KeyValuePair<string, int> v = new KeyValuePair<string, int>("abdf", 2);
+    // Tuple<int, double, int, string, List<int>> v1 =
+    //     new Tuple<int, double, int, string, List<int>>(1, 1.3, 4, "", new List<int>());
 }
