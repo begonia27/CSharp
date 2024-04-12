@@ -36,6 +36,7 @@ namespace Cards
             }
 
             Value value = (Value)randomCardSelector.Next(CardsPerSuit);
+            
             while (IsCardAlreadyDealt(suit, value))
             {
                 value = (Value)randomCardSelector.Next(CardsPerSuit);
