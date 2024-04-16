@@ -4,11 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Test\Chapter17\Chapter17.csproj" />
-    </ItemGroup>
 
     <ItemGroup>
       <Reference Include="Source">
