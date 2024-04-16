@@ -16,7 +16,7 @@ namespace DataTypes
 
             Products = new List<Product>
             {
-                new Product { ProductID="P1", Name="Rope", Description="Best Italian hemp, 40ft", AgeRestricted=false, Price=28.00M },
+                new Product { ProductID="P1", Name="Sugar", Description="Best Italian Noodles, 40ft", AgeRestricted=false, Price=28.00M },
                 new Product { ProductID="P2", Name="Wood", Description="Pine, 4\' x 2\' x 18\'", AgeRestricted=false, Price=12.20M },
                 new Product { ProductID="P3", Name="Screwdriver", Description="Crossheaded", AgeRestricted=false, Price=4.99M },
                 new Product { ProductID="P4", Name="Power Drill", Description="1800 RPM hammer drill", AgeRestricted=true, Price=75.50M },

@@ -14,19 +14,23 @@ namespace AuditService
 {
     public class Auditor
     {
+        public delegate void AuditingCompleteDelegate(string message);
+        public event AuditingCompleteDelegate AuditProcessingComplete;
+        
         public void AuditOrder(Order order)
         {
-            this.doAuditing(order);
+            this.DoAuditing(order);
         }
 
-        private async void doAuditing(Order order)
+        private async void DoAuditing(Order order)
         {
-            List<OrderItem> ageRestrictedItems = findAgeRestrictedItems(order);
+            List<OrderItem> ageRestrictedItems = FindAgeRestrictedItems(order);
             if (ageRestrictedItems.Count > 0)
             {
                 try
                 {
-                    StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync($"audit-{order.OrderID}.xml");
+                    StorageFile file =
+                        await ApplicationData.Current.LocalFolder.CreateFileAsync($"audit-{order.OrderID}.xml");
                     if (file != null)
                     {
                         XmlDocument doc = new XmlDocument();
@@ -48,7 +52,8 @@ namespace AuditService
                     }
                     else
                     {
-                        MessageDialog dlg = new MessageDialog($"Unable to save to file: {file.DisplayName}", "Not saved");
+                        MessageDialog dlg =
+                            new MessageDialog($"Unable to save to file: {file.DisplayName}", "Not saved");
                         _ = dlg.ShowAsync();
                     }
                 }
@@ -57,10 +62,19 @@ namespace AuditService
                     MessageDialog dlg = new MessageDialog(ex.Message, "Exception");
                     _ = dlg.ShowAsync();
                 }
+
+                finally
+                {
+                    AuditProcessingComplete?.Invoke($"Audit record written for Order {order.OrderID}");
+                    // if (AuditProcessingComplete is not null)
+                    // {
+                    //     AuditProcessingComplete($"Audit record written for Order {order.OrderID}");
+                    // }
+                }
             }
         }
 
-        private List<OrderItem> findAgeRestrictedItems(Order order)
+        private List<OrderItem> FindAgeRestrictedItems(Order order)
         {
             return order.Items.FindAll(o => o.Item.AgeRestricted == true);
         }

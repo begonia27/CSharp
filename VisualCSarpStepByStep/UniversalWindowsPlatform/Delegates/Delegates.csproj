@@ -137,6 +137,10 @@
       <Project>{878f8f7f-3a18-4d11-b0bf-735368392a00}</Project>
       <Name>AuditorService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CheckoutService\CheckoutService.csproj">
+      <Project>{23083223-ad90-4c7c-a251-cd8d52d9dbb8}</Project>
+      <Name>CheckoutService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTypes\DataTypes.csproj">
       <Project>{19cbbcab-0ad5-409f-b4a5-5ce2b8378030}</Project>
       <Name>DataTypes</Name>

@@ -12,6 +12,10 @@ namespace DeliveryService
 {
     public class Shipper
     {
+        public delegate void ShippingCompleteDelegate(string message);
+
+        public event ShippingCompleteDelegate ShipProcessingComplete;
+        
         public void ShipOrder(Order order)
         {
             this.doShipping(order);
@@ -21,10 +25,12 @@ namespace DeliveryService
         {
             try
             {
-                StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync($"dispatch-{order.OrderID}.txt");
+                StorageFile file =
+                    await ApplicationData.Current.LocalFolder.CreateFileAsync($"dispatch-{order.OrderID}.txt");
                 if (file != null)
                 {
-                    string dispatchNote = $"Order Summary: \r\nOrder ID: {order.OrderID}\r\nOrder Total: {order.TotalValue:C}";
+                    string dispatchNote =
+                        $"Order Summary: \r\nOrder ID: {order.OrderID}\r\nOrder Total: {order.TotalValue:C}";
 
                     var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
                     var writeStream = stream.GetOutputStreamAt(0);
@@ -44,6 +50,14 @@ namespace DeliveryService
             {
                 MessageDialog dlg = new MessageDialog(ex.Message, "Exception");
                 _ = dlg.ShowAsync();
+            }
+            finally
+            {
+                ShipProcessingComplete?.Invoke($"Dispatch note generated for Order {order.OrderID}");
+                // if (ShipProcessingComplete is not null)
+                // {
+                //     ShipProcessingComplete($"Dispatch note generated for Order {order.OrderID}");
+                // }
             }
         }
     }
