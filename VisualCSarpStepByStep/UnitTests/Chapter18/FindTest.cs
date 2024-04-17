@@ -16,10 +16,10 @@ public class FindTests
             new Person() { ID = 4, Name = "Paul", Age = 22 },
         ];
         
-        // Person match = personnel.Find((Person p) => { return p.ID == 3;});
+        // Person match = personnel.Find((Person p) => { return p.CustomerID == 3;});
         Person match = personnel.Find((p) => p.ID == 3);
 
-        // string expected = $"ID: {match.ID}\n, Name: {match.Name}\n, Age: {match.Age}";
+        // string expected = $"CustomerID: {match.CustomerID}\n, Name: {match.Name}\n, Age: {match.Age}";
 
         Person expected = new Person {ID = 3, Name = "Fred", Age = 34};
         

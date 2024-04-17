@@ -9,17 +9,17 @@ namespace UnitTests.Chapter18;
 [TestClass]
 public class HashSetTests
 {
-    private HashSet<string> employees = [];
-    private HashSet<string> customers = [];
+    private HashSet<string> _employees = [];
+    private HashSet<string> _customers = [];
     
     [TestInitialize]
     public void TestInitialize()
     {
-        employees = ["Fred", "Bert", "Harry", "John"];
-        customers = ["John", "Sid", "Harry", "Diana"];
+        _employees = ["Fred", "Bert", "Harry", "John"];
+        _customers = ["John", "Sid", "Harry", "Diana"];
         
-        employees.Add("James");
-        customers.Add("Francesca");
+        _employees.Add("James");
+        _customers.Add("Francesca");
     }
     
     [TestMethod]
@@ -28,9 +28,9 @@ public class HashSetTests
         List<string> bothExpected = ["Harry", "John"];
         List<string> both = [];
 
-        foreach (string name in employees)
+        foreach (string name in _employees)
         {
-            if (customers.Contains(name))
+            if (_customers.Contains(name))
             {
                 both.Add(name);
             }
@@ -45,9 +45,9 @@ public class HashSetTests
         List<string> bothExpected = ["John", "Harry"];
         List<string> both = [];
         
-        customers.IntersectWith(employees);
+        _customers.IntersectWith(_employees);
 
-        foreach (string name in customers)
+        foreach (string name in _customers)
         {
             both.Add(name);
         }
@@ -61,20 +61,20 @@ public class HashSetTests
         List<string> notRepeatExpected = ["Bert", "Diana", "Francesca", "Fred", "Harry", "James", "John", "Sid"];
         List<string> notRepeat = [];
 
-        foreach (string name in employees)
+        foreach (string name in _employees)
         {
-            if (customers.Contains(name))
+            if (_customers.Contains(name))
             {
-                customers.Remove(name);
+                _customers.Remove(name);
             }
         }
 
-        foreach (string name in employees)
+        foreach (string name in _employees)
         {
-            customers.Add(name);
+            _customers.Add(name);
         }
 
-        foreach (string value in customers)
+        foreach (string value in _customers)
         {
             notRepeat.Add(value);
         }
@@ -90,9 +90,9 @@ public class HashSetTests
         List<string> notRepeatExpected = ["Bert", "Diana", "Francesca", "Fred", "Harry", "James", "John", "Sid"];
         List<string> notRepeat = [];
 
-        customers.UnionWith(employees);
+        _customers.UnionWith(_employees);
 
-        foreach (string name in customers)
+        foreach (string name in _customers)
         {
             notRepeat.Add(name);
         }
@@ -108,15 +108,15 @@ public class HashSetTests
         List<string> onlyExpected = ["Diana", "Francesca", "Sid"];
         List<string> only = [];
 
-        foreach (string name in employees)
+        foreach (string name in _employees)
         {
-            if (customers.Contains(name))
+            if (_customers.Contains(name))
             {
-                customers.Remove(name);
+                _customers.Remove(name);
             }
         }
 
-        foreach (string value in customers)
+        foreach (string value in _customers)
         {
             only.Add(value);
         }
@@ -132,9 +132,9 @@ public class HashSetTests
         List<string> onlyExpected = ["Diana", "Francesca", "Sid"];
         List<string> only = [];
         
-        customers.ExceptWith(employees);
+        _customers.ExceptWith(_employees);
 
-        foreach (string name in customers)
+        foreach (string name in _customers)
         {
             only.Add(name);
         }
