@@ -20,8 +20,7 @@ public class SearchTests
     {
         _customersInfo =
         [
-            new Person()
-                { CustomerID = 1, FirstName = "Kim", LastName = "Abercrombie", CompanyName = "Alpine Ski House" },
+            new Person() { CustomerID = 1, FirstName = "Kim", LastName = "Abercrombie", CompanyName = "Alpine Ski House" },
             new Person() { CustomerID = 2, FirstName = "Jeff", LastName = "Hay", CompanyName = "Coho Winery" },
             new Person() { CustomerID = 3, FirstName = "Charlie", LastName = "Herb", CompanyName = "Alpine Ski House" },
             new Person() { CustomerID = 4, FirstName = "Chris", LastName = "Preston", CompanyName = "Trey Research" },
@@ -30,8 +29,7 @@ public class SearchTests
             new Person() { CustomerID = 7, FirstName = "John", LastName = "Kane", CompanyName = "Wingtip Toys" },
             new Person() { CustomerID = 8, FirstName = "David", LastName = "Simpson", CompanyName = "Trey Research" },
             new Person() { CustomerID = 9, FirstName = "Greg", LastName = "Chapman", CompanyName = "Wingtip Toys" },
-            new Person()
-                { CustomerID = 10, FirstName = "Tim", LastName = "Litton", CompanyName = "Wide World Importers" }
+            new Person() { CustomerID = 10, FirstName = "Tim", LastName = "Litton", CompanyName = "Wide World Importers" }
         ];
 
         _addressInfo =
@@ -187,7 +185,7 @@ public class SearchTests
         }
 
         // bool a = thenByCollectionExpected[0] == thenByCollectionActual[0];
-        // Person x = new(), y = new();
+        // People x = new(), y = new();
         // x.Equals(y)
         // if (x == y)
         // {
@@ -212,13 +210,13 @@ public class SearchTests
     {
        // expected result:
        // Country Switzerland have 1 companies: 
-       // Alpine Ski House
-       //     Country United States have 2 companies: 
-       // Coho Winery
-       // Trey Research
+       //       Alpine Ski House
+       // Country United States have 2 companies: 
+       //       Coho Winery
+       //       Trey Research
        // Country United Kingdom have 2 companies: 
-       // Wingtip Toys
-       // Wide World Importers
+       //       Wingtip Toys
+       //       Wide World Importers
         
         // var companiesCollection = _addressInfo.GroupBy(addrs => addrs.Country);
         IEnumerable<IGrouping<string?, Person>> companiesCollection = _addressInfo.GroupBy(addrs => addrs.Country);
@@ -229,8 +227,69 @@ public class SearchTests
 
             foreach (Person name in grouping)
             {
-                Console.WriteLine(name.CompanyName);
+                Console.WriteLine($"\t{name.CompanyName}");
             }
+        }
+    }
+
+    [TestMethod]
+    public void CountTest()
+    {
+        int countExpected = 5;
+        int numberOfCompanies = _addressInfo.Select(addr => addr.CompanyName).Count();
+        
+        Assert.AreEqual(countExpected, numberOfCompanies);
+    }
+
+    [TestMethod]
+    public void DeduplicationTest()
+    {
+        // 去重
+        int deduplicationCountExpected = 3;
+        int valueOfCompanies = _addressInfo.Select(addr => addr.Country).Distinct().Count();
+        Assert.AreEqual(deduplicationCountExpected, valueOfCompanies);
+    }
+
+    [TestMethod]
+    public void JoinTest()
+    {
+        List<Person> expected =
+        [
+            new Person() { FirstName = "Kim", LastName = "Abercrombie", Country = "Switzerland" },
+            new Person() { FirstName = "Jeff", LastName = "Hay", Country = "United States" },
+            new Person() { FirstName = "Charlie", LastName = "Herb", Country = "Switzerland" },
+            new Person() { FirstName = "Chris", LastName = "Preston", Country = "United States" },
+            new Person() { FirstName = "Dave", LastName = "Barnett", Country = "United Kingdom" },
+            new Person() { FirstName = "Ann", LastName = "Beebe", Country = "United States" },
+            new Person() { FirstName = "John", LastName = "Kane", Country = "United Kingdom" },
+            new Person() { FirstName = "David", LastName = "Simpson", Country = "United States" },
+            new Person() { FirstName = "Greg", LastName = "Chapman", Country = "United Kingdom" },
+            new Person() { FirstName = "Tim", LastName = "Litton", Country = "United Kingdom" },
+        ];
+        
+        List<Person> actual = [];
+        
+        // 千万不要写错了！！ 最后联结的数据里有 custs 和 addrs 的值
+        IEnumerable<Person> companiesAndCustomers = _customersInfo
+            .Select(c => new { c.FirstName, c.LastName, c.CompanyName })
+            .Join(_addressInfo,
+                custs => custs.CompanyName,
+                addrs => addrs.CompanyName,
+                (custs, addrs) => new Person{FirstName = custs.FirstName, LastName = custs.LastName, Country = addrs.Country});
+        
+        foreach (Person row in companiesAndCustomers)
+        {
+            actual.Add(row);
+        }
+        
+        Assert.AreEqual(expected.Count, actual.Count);
+        
+        var length = actual.Count;
+        for (var i = 0; i < length; ++i)
+        {
+            Assert.AreEqual(expected[i].FirstName, actual[i].FirstName);
+            Assert.AreEqual(expected[i].LastName, actual[i].LastName);
+            Assert.AreEqual(expected[i].Country, actual[i].Country);
         }
     }
 }

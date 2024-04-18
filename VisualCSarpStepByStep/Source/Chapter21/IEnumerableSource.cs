@@ -28,7 +28,7 @@ public class Person : IEnumerable
     //         return false;
     //     }
     //     
-    //     if (obj is Person p)
+    //     if (obj is People p)
     //     {
     //         return CompanyName == p.CompanyName && City == p.City && Country == p.Country;
     //     }
@@ -38,7 +38,7 @@ public class Person : IEnumerable
     //     }
     // }
 
-    // public static bool operator ==(Person? leftHandSide, Person? rightHandSide)
+    // public static bool operator ==(People? leftHandSide, People? rightHandSide)
     // {
     //     if (leftHandSide is null && rightHandSide is null)
     //     {
@@ -55,7 +55,7 @@ public class Person : IEnumerable
     //            leftHandSide.Country == rightHandSide.Country;
     // }
     //
-    // public static bool operator !=(Person leftHandSide, Person rightHandSide)
+    // public static bool operator !=(People leftHandSide, People rightHandSide)
     // {
     //     return !(leftHandSide == rightHandSide);
     // }

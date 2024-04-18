@@ -16,7 +16,7 @@ public class FindTests
             new Person() { ID = 4, Name = "Paul", Age = 22 },
         ];
         
-        // Person match = personnel.Find((Person p) => { return p.CustomerID == 3;});
+        // People match = personnel.Find((People p) => { return p.CustomerID == 3;});
         Person match = personnel.Find((p) => p.ID == 3);
 
         // string expected = $"CustomerID: {match.CustomerID}\n, Name: {match.Name}\n, Age: {match.Age}";
